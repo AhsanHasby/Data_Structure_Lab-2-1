@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cmath>
 using namespace std;
 
 int main(){
@@ -19,8 +20,15 @@ int main(){
 
     cout << "Maximum value: " << Max << endl;
     cout << "Mininmum value: " << Min << endl;
-    cout << "Average of the array: " << (float)Total/n << endl;
     cout << "Total value:" << Total << endl;
+    cout << "Average of the array: " << (float)Total/n << endl;
+
+    //printing every element sin-cos value:
+    for(int i = 0; i < n; i++){
+        double rad = array[i]*(M_PI/180);
+        cout << "sin value of " << i+1 << "-th element : " << sin(rad) << endl;
+        cout << "cos value of " << i+1 << "-th element : " << cos(rad) << endl;
+    }
 
 
     return 0;
