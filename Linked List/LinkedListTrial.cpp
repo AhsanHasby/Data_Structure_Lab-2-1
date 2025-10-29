@@ -10,18 +10,17 @@ public:
         data = value;
         next = nullptr;
     }
-
 };
 
 class List {
     Node* head;
     Node* tail;
-
-public:
+public:    
     List() {
-        head = tail = nullptr;
+        head = nullptr;
+        tail = nullptr;
     }
-    //Insertion
+    
     void push_front(int value) {
         Node* new_node = new Node(value);
         if(head == nullptr) {
@@ -31,40 +30,48 @@ public:
             new_node->next = head;
             head = new_node;
         }
+
     }
     void push_back(int value) {
         Node* new_node = new Node(value);
         if(head == nullptr) {
-            head = tail = nullptr;
+            head = tail = new_node;
         }
         else {
             tail->next = new_node;
             tail = new_node;
         }
     }
-    //Traversing
-    void printLL() {
+    
+    void traverse() {
+        if(head == nullptr) {
+            cout << "LINKED LIST IS EMPTY" << endl;
+            return;
+        }
+        cout << "Linked List:\n";
         Node* temp = head;
         while(temp != nullptr) {
             cout << temp->data << " ";
-            temp = temp->next; 
+            temp = temp->next;
         }
         cout << endl;
     }
-    //Deletion
+    
     void pop_front() {
         if(head == nullptr) {
-            cout << "LINKED LIST IS EMPTY!" << endl;
+            cout << "LINKED LIST IS EMPTY!";
             return;
         }
         Node* temp = head;
         head = temp->next;
-        temp->next = nullptr;
         delete temp;
+        if(head == nullptr) {
+            tail = nullptr;
+        }
     }
     void pop_back() {
         if(head == nullptr) {
-            cout << "LINKED LIST IS EMPTY!" << endl;
+            cout << "LINKED LIST IS EMPTY!";
             return;
         }
         Node* temp = head;
@@ -74,31 +81,29 @@ public:
         temp->next = nullptr;
         delete tail;
         tail = temp;
+
     }
 
 };
 
 
-int main () {
+int main() {
     List ll;
-    // Insertion
-    ll.push_front(1);
-    ll.push_front(2);
-    ll.push_front(3);
-    ll.printLL();
-
-    ll.push_back(1);
-    ll.push_back(2);
-    ll.push_back(3);
-    ll.printLL();
-    // Deletion
+    
+    int n = 5;
+    for(int i = 0; i < n; i++) {
+        ll.push_back(i+1);
+    }
+    ll.traverse();
+    
     ll.pop_front();
     ll.pop_front();
-    ll.printLL();
+    ll.traverse();
 
     ll.pop_back();
     ll.pop_back();
-    ll.printLL();
+    ll.traverse();
 
+    cout << "Main ended" << endl;
     return 0;
 }
