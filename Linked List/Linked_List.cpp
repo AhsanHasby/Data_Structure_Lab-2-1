@@ -42,6 +42,31 @@ public:
             tail = new_node;
         }
     }
+    void insert_at(int value, int pos) {
+        if(pos == 0) {
+            push_front(value);
+            return;
+        }
+
+        Node* temp = head;
+        int current_pos = 0;
+        while(temp != nullptr && current_pos < pos - 1) {
+            temp = temp->next;
+            current_pos++;
+        }
+        if(temp == nullptr) {
+            cout << "Array Index Out Of Bound!\n";
+            return;
+        }
+
+        Node* new_node = new Node(value);
+        new_node->next = temp->next;
+        temp->next = new_node;
+        if(new_node->next == nullptr) {
+            tail = new_node;
+        }
+    }
+
     //Traversing
     void printLL() {
         Node* temp = head;
@@ -91,14 +116,18 @@ int main () {
     ll.push_back(2);
     ll.push_back(3);
     ll.printLL();
-    // Deletion
-    ll.pop_front();
-    ll.pop_front();
+
+    ll.insert_at(10, 4);
     ll.printLL();
 
-    ll.pop_back();
-    ll.pop_back();
-    ll.printLL();
+    // Deletion
+    // ll.pop_front();
+    // ll.pop_front();
+    // ll.printLL();
+
+    // ll.pop_back();
+    // ll.pop_back();
+    // ll.printLL();
 
     return 0;
 }
