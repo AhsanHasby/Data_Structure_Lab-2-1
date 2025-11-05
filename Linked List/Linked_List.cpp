@@ -68,7 +68,7 @@ public:
     }
 
     //Traversing
-    void printLL() {
+    void traverse() {
         Node* temp = head;
         while(temp != nullptr) {
             cout << temp->data << " ";
@@ -100,6 +100,29 @@ public:
         delete tail;
         tail = temp;
     }
+    void delete_at(int pos) {
+        if(pos == 1) {
+            pop_front();
+        }
+
+        Node* temp = head;
+        int current_pos = 1;
+        while(temp != nullptr && current_pos < pos - 1) {
+            temp = temp->next;
+            current_pos++;
+        }
+        if(temp == nullptr || temp->next == nullptr) {
+            cout << "Array Index Out Of Bound" << endl;
+            return;
+        }
+        Node* current_node = temp->next;
+        temp->next = current_node->next;
+        delete current_node;
+        if(temp->next == nullptr) {
+            tail = temp;
+        }
+
+    }
 
 };
 
@@ -110,24 +133,30 @@ int main () {
     ll.push_front(1);
     ll.push_front(2);
     ll.push_front(3);
-    ll.printLL();
+    ll.traverse();
 
     ll.push_back(1);
     ll.push_back(2);
     ll.push_back(3);
-    ll.printLL();
+    ll.traverse();
 
     ll.insert_at(10, 4);
-    ll.printLL();
+    ll.traverse();
 
     // Deletion
     // ll.pop_front();
     // ll.pop_front();
-    // ll.printLL();
+    // ll.traverse();
 
     // ll.pop_back();
     // ll.pop_back();
-    // ll.printLL();
+    // ll.traverse();
+    cout << "Which position you want to erase?\n: ";
+    int pos; 
+    cin >> pos;
+    ll.delete_at(pos);
+    cout << "After deletion:\n";
+    ll.traverse();
 
     return 0;
 }
