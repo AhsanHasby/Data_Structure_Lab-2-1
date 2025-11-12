@@ -9,13 +9,20 @@ private:
     int size = 0;
 
 public:
+    Stack() {
+        arr_size = 1000;
+        arr = new int[arr_size];
+        last = -1;
+    }
     Stack(int n) {
         arr_size = n;
         arr = new int[n];
         last = -1;
     }
 
-    ~Stack() {}
+    ~Stack() {
+        delete[] arr;
+    }
 
     void isEmpty() {
         if(last == -1) {
@@ -58,7 +65,7 @@ public:
 };
 
 int main() {
-    Stack st(50);
+    Stack st;
 
     st.isEmpty();
     
