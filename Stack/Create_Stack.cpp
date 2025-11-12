@@ -3,13 +3,15 @@ using namespace std;
 
 class Stack {
 private:
-    int n = 100;
-    int arr[100];
+    int arr_size;
+    int* arr;
     int last;
     int size = 0;
 
 public:
-    Stack() {
+    Stack(int n) {
+        arr_size = n;
+        arr = new int[n];
         last = -1;
     }
 
@@ -27,7 +29,7 @@ public:
     }
 
     void push(int x) {
-        if(last == n - 1) {
+        if(last == arr_size - 1) {
             cout << "Stack Overflow" << endl;
             return;
         }
@@ -56,7 +58,7 @@ public:
 };
 
 int main() {
-    Stack st;
+    Stack st(50);
 
     st.isEmpty();
     
