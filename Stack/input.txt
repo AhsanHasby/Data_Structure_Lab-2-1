@@ -1,0 +1,5 @@
+# Postfix Evaluation:
+9 5 6 2 + * 12 4 / -
+
+#Infix to Postfix Evaluation:
+
