@@ -27,7 +27,7 @@ public:
             cout << endl;
         }
     }
-    void dfs(int u, vector<bool> &vis) {
+    void dfs(int u, vector<bool> &vis) { // O(V + E)
         vis[u] = true;
         cout << u << " ";
 
