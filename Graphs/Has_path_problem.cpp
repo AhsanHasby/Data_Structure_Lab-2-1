@@ -28,27 +28,6 @@ public:
         }
     }
 
-    void bfs() { // O(V + E)
-        queue<int> q;
-        vector<bool> vis(V, false);
-        q.push(0);
-        vis[0] = true;
-
-        while(q.size() > 0) {
-            int u = q.front();
-            q.pop();
-            cout << u << " ";
-            
-            list<int> neighbours = l[u]; // u-------v
-            for(int v : neighbours) {
-                if(!vis[v]) {
-                    vis[v] = true;
-                    q.push(v);
-                }
-            }
-        }
-        cout << endl;
-    }
     void dfs_helper(int u, vector<bool> &vis) { // O(V + E)
         vis[u] = true;
         cout << u << " ";
@@ -66,10 +45,47 @@ public:
         cout << endl;
     }
 
+    bool path_helper(int src, int dest, vector<bool> &vis) {
+        if(src == dest) {
+            return true;
+        }
+
+        vis[src] = true;
+        list<int> neighbours = l[src];
+
+        for(int v : neighbours) {
+            if(!vis[v]) {
+                if(path_helper(v, dest, vis)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    bool has_path(int src, int dest) {
+        vector<bool> vis(V, false);
+
+        return path_helper(src, dest, vis);
+    }
+
 };
 
+// Solution using DFS:
 int main() {
-    //Solve it using both DFS + BFS
+    int n = 7;
+    Graph graph(n);
+    
+    graph.add_edge(0, 1);
+    graph.add_edge(0, 2);
+    graph.add_edge(1, 3);
+    graph.add_edge(2, 4);
+    graph.add_edge(3, 4);
+    graph.add_edge(3, 5);
+    graph.add_edge(5, 6);
+
+    // DFS solution of has_path problem:
+    cout << graph.has_path(1, 6) << endl;
+    cout << graph.has_path(1, 7) << endl;
 
     return 0;
 }
