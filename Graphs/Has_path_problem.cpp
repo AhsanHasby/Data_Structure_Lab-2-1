@@ -67,9 +67,22 @@ public:
     }
 
 };
-
+// Solve it using Both DFS + BFS
 int main() {
-    //Solve it using both DFS + BFS
+    int n = 7;
+    Graph graph(n);
+
+    graph.add_edge(0, 1);
+    graph.add_edge(0, 2);
+    graph.add_edge(1, 3);
+    graph.add_edge(2, 4);
+    graph.add_edge(3, 4);
+    graph.add_edge(3, 5);
+    graph.add_edge(4, 5);
+    graph.add_edge(5, 6);
+    // Traverse
+    cout << "Traverse" << endl;
+    graph.print();
 
     return 0;
 }
