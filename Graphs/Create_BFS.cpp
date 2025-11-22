@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <queue>
 
 using namespace std;
 
@@ -25,6 +26,27 @@ public:
             }
             cout << endl;
         }
+    }
+    void bfs() {
+        queue<int> q;
+        vector<bool> vis(V, false);
+        q.push(0);
+        vis[0] = true;
+
+        while(q.size() > 0) {
+            int u = q.front();
+            q.pop();
+            cout << u << " ";
+            
+            list<int> neighbours = l[u]; // u-------v
+            for(int v : neighbours) {
+                if(!vis[v]) {
+                    vis[v] = true;
+                    q.push(v);
+                }
+            }
+        }
+        cout << endl;
     }
 
 };
