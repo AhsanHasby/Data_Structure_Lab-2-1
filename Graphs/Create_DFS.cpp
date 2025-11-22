@@ -27,22 +27,28 @@ public:
             cout << endl;
         }
     }
-    void dfs(int u, vector<bool> &vis) { // O(V + E)
+    void dfs_helper(int u, vector<bool> &vis) { // O(V + E)
         vis[u] = true;
         cout << u << " ";
 
         list<int>neighbours = l[u];
         for(int v : neighbours) {
             if(!vis[v]) {
-                dfs(v, vis);
+                dfs_helper(v, vis);
             }
         }
+    }
+    void dfs(int n) {
+        vector<bool> vis(n, false);
+        dfs_helper(0, vis);
+        cout << endl;
     }
 
 };
 
 int main() {
-    Graph graph(7);
+    int n = 7;
+    Graph graph(n);
 
     graph.add_edge(0, 1);
     graph.add_edge(0, 2);
@@ -57,8 +63,8 @@ int main() {
     graph.print();
     //DFS
     cout << "Depth First Search" << endl;
-    vector<bool> vis(7, false);
-    graph.dfs(0, vis);
+    
+    graph.dfs(n);
 
     return 0;
 }
