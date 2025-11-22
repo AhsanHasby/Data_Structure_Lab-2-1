@@ -27,7 +27,7 @@ public:
             cout << endl;
         }
     }
-    void bfs() {
+    void bfs() { // O(V + E)
         queue<int> q;
         vector<bool> vis(V, false);
         q.push(0);
