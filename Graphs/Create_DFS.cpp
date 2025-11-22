@@ -52,10 +52,10 @@ int main() {
     graph.add_edge(3, 5);
     graph.add_edge(4, 5);
     graph.add_edge(5, 6);
-    
+    // Traverse
     cout << "Traverse" << endl;
     graph.print();
-
+    //DFS
     cout << "Depth First Search" << endl;
     vector<bool> vis(7, false);
     graph.dfs(0, vis);
