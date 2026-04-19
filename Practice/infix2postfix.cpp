@@ -22,6 +22,7 @@ string postfixExp(string s){
         if(isOperand(ch)) {
             ans += ch;
         }
+        else if(ch = ' ') continue;
         else if(ch == '(') {
             st.push(ch);
         }
@@ -30,7 +31,7 @@ string postfixExp(string s){
                 ans += st.top();
                 st.pop();
             }
-            st.pop();
+            st.pop(); // to remove '('
         }
         // Then must be -> Operator :
         else {  
